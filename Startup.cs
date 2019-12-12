@@ -29,6 +29,7 @@ namespace demo
             var key = Configuration.GetValue<string>("AppSettings:COMPUTER_VISION_SUBSCRIPTION_KEY");
             var endpoint = Configuration.GetValue<string>("AppSettings:COMPUTER_VISION_ENDPOINT");
 
+            services.AddSingleton<ImageUtils>();
             services.AddTransient<ImageAnalyzer>(x => new ImageAnalyzer(key, endpoint));
         }
 

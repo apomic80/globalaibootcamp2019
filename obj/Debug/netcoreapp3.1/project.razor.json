@@ -20516,6 +20516,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "/Users/micheleaponte/globalaicaserta/demo/Views/Home/Anagrafica.cshtml",
+      "TargetPath": "Views/Home/Anagrafica.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "/Users/micheleaponte/globalaicaserta/demo/Views/Shared/_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views/Shared/_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
