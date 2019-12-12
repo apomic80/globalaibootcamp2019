@@ -38,3 +38,4 @@
 /Users/micheleaponte/globalaicaserta/demo/obj/Debug/netcoreapp3.1/demo.pdb
 /Users/micheleaponte/globalaicaserta/demo/obj/Debug/netcoreapp3.1/Razor/Views/Home/Anagrafica.cshtml.g.cs
 /Users/micheleaponte/globalaicaserta/demo/bin/Debug/netcoreapp3.1/CoreCompat.System.Drawing.dll
+/Users/micheleaponte/globalaicaserta/demo/bin/Debug/netcoreapp3.1/Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction.dll

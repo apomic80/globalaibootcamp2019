@@ -28,9 +28,12 @@ namespace demo
 
             var key = Configuration.GetValue<string>("AppSettings:COMPUTER_VISION_SUBSCRIPTION_KEY");
             var endpoint = Configuration.GetValue<string>("AppSettings:COMPUTER_VISION_ENDPOINT");
+            var customKey = Configuration.GetValue<string>("AppSettings:CUSTOM_VISION_SUBSCRIPTION_KEY");
+            var customEndpoint = Configuration.GetValue<string>("AppSettings:CUSTOM_VISION_ENDPOINT");
+            var customProjectId = Configuration.GetValue<string>("AppSettings:CUSTOM_PROJECT_ID");
 
             services.AddSingleton<ImageUtils>();
-            services.AddTransient<ImageAnalyzer>(x => new ImageAnalyzer(key, endpoint));
+            services.AddTransient<ImageAnalyzer>(x => new ImageAnalyzer(key, endpoint, customKey, customEndpoint, customProjectId));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

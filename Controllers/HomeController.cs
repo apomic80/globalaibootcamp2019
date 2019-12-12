@@ -44,11 +44,12 @@ namespace demo.Controllers
         {
             var imageResult = await this.imageAnalyzer.Analyze(image.OpenReadStream());
             var textResult = await this.imageAnalyzer.ExtractText(image.OpenReadStream());
+            var tipoDocumento = await this.imageAnalyzer.GetCustomLabel(image.OpenReadStream());
             Tuple<string, IList<double>>[] lines = textResult[0].Lines.Select(x => new Tuple<string, IList<double>>(x.Text.Trim().ToUpper(), x.BoundingBox)).ToArray();
 
             var viewModel = new AnagraficaViewModel();
             viewModel.Foto = this.getFoto(imageResult, image);
-            viewModel.Documento = this.getTipoDocumento(lines);
+            viewModel.Documento = this.getTipoDocumento(tipoDocumento);
             viewModel.Nome = this.getValue(CampiDocumento.Nome, viewModel.Documento, lines);
             viewModel.Cognome = this.getValue(CampiDocumento.Cognome, viewModel.Documento, lines);
             viewModel.Indirizzo = this.getValue(CampiDocumento.Indirizzo, viewModel.Documento, lines);
@@ -121,33 +122,25 @@ namespace demo.Controllers
             return null;
         }
 
-        private TipoDocumento getTipoDocumento(Tuple<string, IList<double>>[] lines) 
+        private TipoDocumento getTipoDocumento(string tipoDocumento) 
         {
-            foreach (var line in lines)
+            switch (tipoDocumento)
             {
-                var text = line.Item1.Trim();
-
-                if(text.StartsWith("PASSAPORTO"))
-                {
-                    return TipoDocumento.Passaporto;
-                }
-
-                if(text.Contains("D'IDENTITA"))
-                {
+                case "cartaidentitacartacea":
                     return TipoDocumento.CartaIdentitaCartacea;
-                }
-
-                if(text.Contains("DI IDENTIT"))
-                {
+                
+                case "cartaidentitadigitale":
                     return TipoDocumento.CartaIdentitaDigitale;
-                }
 
-                if(text.Contains("PATENTE"))
-                {
+                case "patente":
                     return TipoDocumento.Patente;
-                }
+                
+                case "passaporto":
+                    return TipoDocumento.Passaporto;
+                
+                default:
+                    return TipoDocumento.CartaIdentitaCartacea;
             }
-            return TipoDocumento.CartaIdentitaCartacea;
         }
 
 
