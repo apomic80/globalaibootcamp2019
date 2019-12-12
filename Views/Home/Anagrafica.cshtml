@@ -8,23 +8,30 @@
 <h4>Anagrafica</h4>
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Foto" class="control-label"></label>
+            <div class="form-group row col">
                 <img src="@Model.Foto" />
-                <input type="hidden" asp-for="Foto" class="form-control" />
             </div>
-            <div class="form-group">
-                <label asp-for="Nome" class="control-label"></label>
-                <input asp-for="Nome" class="form-control" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-6">
+                    <label asp-for="Nome" class="control-label"></label>
+                    <input asp-for="Nome" class="form-control" />
+                    <span asp-validation-for="Nome" class="text-danger"></span>
+                </div>
+                <div class="form-group col-6">
+                    <label asp-for="Cognome" class="control-label"></label>
+                    <input asp-for="Cognome" class="form-control" />
+                    <span asp-validation-for="Cognome" class="text-danger"></span>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="Cognome" class="control-label"></label>
-                <input asp-for="Cognome" class="form-control" />
-                <span asp-validation-for="Cognome" class="text-danger"></span>
+            <div class="row">
+                <div class="form-group col-12">
+                    <label asp-for="Indirizzo" class="control-label"></label>
+                    <input asp-for="Indirizzo" class="form-control" />
+                    <span asp-validation-for="Indirizzo" class="text-danger"></span>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -34,7 +41,7 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Back to Home</a>
 </div>
 
 @section Scripts {
