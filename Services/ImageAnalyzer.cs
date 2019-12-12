@@ -31,5 +31,24 @@ namespace demo.Services
         {
             return await this.client.AnalyzeImageInStreamAsync(image, features);
         }
+
+        public async Task<IList<TextRecognitionResult>> ExtractText(Stream image)
+        {
+            var result = await this.client.BatchReadFileInStreamAsync(image);
+            string operationId = result.OperationLocation.Substring(result.OperationLocation.Length - 36);
+            
+            int i = 0;
+            int maxRetries = 10;
+            ReadOperationResult operation = await client.GetReadOperationResultAsync(operationId);
+            while ((operation.Status == TextOperationStatusCodes.Running ||
+                    operation.Status == TextOperationStatusCodes.NotStarted) 
+                    && i++ < maxRetries)
+            {
+                await Task.Delay(1000);
+                operation = await client.GetReadOperationResultAsync(operationId);
+            }
+
+            return operation.RecognitionResults;
+        }
     }
 }

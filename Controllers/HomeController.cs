@@ -29,7 +29,8 @@ namespace demo.Controllers
             if(image == null || image.Length == 0)
                 return BadRequest();
                
-            var result = await this.imageAnalyzer.Analyze(image.OpenReadStream());
+            // var result = await this.imageAnalyzer.Analyze(image.OpenReadStream());
+            var result = await this.imageAnalyzer.ExtractText(image.OpenReadStream());
     
             return Ok(result);
         }
